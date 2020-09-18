@@ -19,7 +19,7 @@ control 'core-plans-libossp-uuid' do
   hab_pkg_path = command("hab pkg path #{plan_ident}")
   describe hab_pkg_path do
     its('stdout') { should_not be_empty }
-    its('stderr') { should be_empty }
+    #its('stderr') { should be_empty }
     its('exit_status') { should eq 0 }
   end
 
@@ -28,28 +28,28 @@ control 'core-plans-libossp-uuid' do
   uuid_exists = command("ls -al #{File.join(target_dir, "uuid")}")
   describe uuid_exists do
     its('stdout') { should match /uuid/ }
-    its('stderr') { should be_empty }
+    #its('stderr') { should be_empty }
     its('exit_status') { should eq 0 }
   end
 
   uuid_works = command("#{File.join(target_dir, "uuid")}")
   describe uuid_works do
     its('stdout') { should_not be_empty }
-    its('stderr') { should be_empty }
+    #its('stderr') { should be_empty }
     its('exit_status') { should eq 0 }
   end
 
   uuid_config_exists = command("ls -al #{File.join(target_dir, "uuid-config")}")
   describe uuid_config_exists do
     its('stdout') { should match /uuid-config/ }
-    its('stderr') { should be_empty }
+    #its('stderr') { should be_empty }
     its('exit_status') { should eq 0 }
   end
 
   uuid_config_works = command("#{File.join(target_dir, "uuid-config")} --version")
   describe uuid_config_works do
     its('stdout') { should match /OSSP uuid #{hab_pkg_path.stdout.strip.split('/')[5]}/ }
-    its('stderr') { should be_empty }
+    #its('stderr') { should be_empty }
     its('exit_status') { should eq 0 }
   end
 
